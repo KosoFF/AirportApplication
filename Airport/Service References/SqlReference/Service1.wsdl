@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:54822/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:54822/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:54822/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SqlService" />
+      <xsd:import schemaLocation="http://localhost:54822/Service.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_SignUp_InputMessage">
+    <wsdl:part name="parameters" element="tns:SignUp" />
+  </wsdl:message>
+  <wsdl:message name="IService_SignUp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SignUpResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddCity_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCity" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddCity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddRoute_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoute" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddRoute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRouteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetCitiesDictionary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCitiesDictionary" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetCitiesDictionary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCitiesDictionaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddAircraft_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAircraft" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddAircraft_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAircraftResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAircraftDictionary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAircraftDictionary" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAircraftDictionary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAircraftDictionaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetRouteDictionary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRouteDictionary" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetRouteDictionary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRouteDictionaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFlight" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddPassenger_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPassenger" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddPassenger_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPassengerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RemovePassenger_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePassenger" />
+  </wsdl:message>
+  <wsdl:message name="IService_RemovePassenger_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePassengerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetPassengerDictionary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPassengerDictionary" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetPassengerDictionary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPassengerDictionaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddBoardingPass_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddBoardingPass" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddBoardingPass_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddBoardingPassResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddLuggage_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLuggage" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddLuggage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLuggageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetFlightDictionary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlightDictionary" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetFlightDictionary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlightDictionaryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="SignUp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SignUp" message="tns:IService_SignUp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SignUpResponse" message="tns:IService_SignUp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Login" message="tns:IService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/LoginResponse" message="tns:IService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddCity" message="tns:IService_AddCity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddCityResponse" message="tns:IService_AddCity_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRoute">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddRoute" message="tns:IService_AddRoute_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddRouteResponse" message="tns:IService_AddRoute_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesDictionary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetCitiesDictionary" message="tns:IService_GetCitiesDictionary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetCitiesDictionaryResponse" message="tns:IService_GetCitiesDictionary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAircraft">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddAircraft" message="tns:IService_AddAircraft_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddAircraftResponse" message="tns:IService_AddAircraft_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAircraftDictionary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetAircraftDictionary" message="tns:IService_GetAircraftDictionary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetAircraftDictionaryResponse" message="tns:IService_GetAircraftDictionary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRouteDictionary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetRouteDictionary" message="tns:IService_GetRouteDictionary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetRouteDictionaryResponse" message="tns:IService_GetRouteDictionary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddFlight" message="tns:IService_AddFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddFlightResponse" message="tns:IService_AddFlight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPassenger">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddPassenger" message="tns:IService_AddPassenger_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddPassengerResponse" message="tns:IService_AddPassenger_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovePassenger">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RemovePassenger" message="tns:IService_RemovePassenger_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RemovePassengerResponse" message="tns:IService_RemovePassenger_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPassengerDictionary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetPassengerDictionary" message="tns:IService_GetPassengerDictionary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetPassengerDictionaryResponse" message="tns:IService_GetPassengerDictionary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddBoardingPass">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddBoardingPass" message="tns:IService_AddBoardingPass_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddBoardingPassResponse" message="tns:IService_AddBoardingPass_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLuggage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddLuggage" message="tns:IService_AddLuggage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddLuggageResponse" message="tns:IService_AddLuggage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlightDictionary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetFlightDictionary" message="tns:IService_GetFlightDictionary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetFlightDictionaryResponse" message="tns:IService_GetFlightDictionary_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SignUp">
+      <soap:operation soapAction="http://tempuri.org/IService/SignUp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCity">
+      <soap:operation soapAction="http://tempuri.org/IService/AddCity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRoute">
+      <soap:operation soapAction="http://tempuri.org/IService/AddRoute" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesDictionary">
+      <soap:operation soapAction="http://tempuri.org/IService/GetCitiesDictionary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAircraft">
+      <soap:operation soapAction="http://tempuri.org/IService/AddAircraft" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAircraftDictionary">
+      <soap:operation soapAction="http://tempuri.org/IService/GetAircraftDictionary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRouteDictionary">
+      <soap:operation soapAction="http://tempuri.org/IService/GetRouteDictionary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFlight">
+      <soap:operation soapAction="http://tempuri.org/IService/AddFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPassenger">
+      <soap:operation soapAction="http://tempuri.org/IService/AddPassenger" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePassenger">
+      <soap:operation soapAction="http://tempuri.org/IService/RemovePassenger" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPassengerDictionary">
+      <soap:operation soapAction="http://tempuri.org/IService/GetPassengerDictionary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddBoardingPass">
+      <soap:operation soapAction="http://tempuri.org/IService/AddBoardingPass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLuggage">
+      <soap:operation soapAction="http://tempuri.org/IService/AddLuggage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlightDictionary">
+      <soap:operation soapAction="http://tempuri.org/IService/GetFlightDictionary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
+      <soap:address location="http://localhost:54822/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

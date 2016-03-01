@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="Airport.NewViews.AddRoutePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Airport.NewViews"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Light"
+    DataContext="{Binding AddRouteViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1.5*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" Grid.ColumnSpan="2" Text="{Binding WelcomeText}"/>
+        <Image x:Name="airplane62___копия__2__png" Source="../Assets/airplane62 — копия (2).png" Height="100" Grid.ColumnSpan="2" />
+        <Button VerticalAlignment="Center" Width="100" Height="100" Opacity="0" Grid.ColumnSpan="2" />
+
+        <TextBlock Grid.Row="2" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Add city:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Height="20" Width="200" HorizontalAlignment="Left" Margin="5 10 100 10" Text="{Binding CityName, Mode=TwoWay}"></TextBox>
+        <Button Grid.Row="2" Grid.Column="1"  Width="50" Margin="215 0 10 0" Background="White" Content="Add" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="Black"
+                Command="{Binding AddCityCommand}"/>
+       
+        <TextBlock Grid.Row="3" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Departure point:</TextBlock>
+        <ComboBox Grid.Row="3" Grid.Column="1"  Margin="5 10 10 10" VerticalAlignment="Center" Width="200" ItemsSource="{Binding CitiesDictionary}" DisplayMemberPath="Value" 
+                  SelectedItem="{Binding DeparturePoint, Mode=TwoWay}"/>
+        <TextBlock Grid.Row="4" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Arrival point:</TextBlock>
+        <ComboBox Grid.Row="4" Grid.Column="1"  Margin="5 10 10 10" VerticalAlignment="Center" Width="200" ItemsSource="{Binding CitiesDictionary}" DisplayMemberPath="Value" 
+                  SelectedItem="{Binding ArrivalPoint, Mode=TwoWay}"/>
+
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 0 5 0 " 
+                        Background="White" Content="Add route" Command="{Binding AddRouteCommand}" BorderThickness="1" BorderBrush="Black"/>
+                <Button Grid.Column="1" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 5 0" 
+                        Background="DarkGray" Content="Cancel" Command ="{Binding BackCommand}" BorderThickness="1" BorderBrush="Black"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

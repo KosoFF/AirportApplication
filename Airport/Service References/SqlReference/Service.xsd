@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SqlService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SqlService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Check_in">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoardingPass" nillable="true" type="tns:ArrayOfBoardingPass" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManagerID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Check_in" nillable="true" type="tns:Check_in" />
+  <xs:complexType name="ArrayOfBoardingPass">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BoardingPass" nillable="true" type="tns:BoardingPass" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBoardingPass" nillable="true" type="tns:ArrayOfBoardingPass" />
+  <xs:complexType name="BoardingPass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoardingPassID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CheckInManagerID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Check_in" nillable="true" type="tns:Check_in" />
+      <xs:element minOccurs="0" name="Flight" nillable="true" type="tns:Flight" />
+      <xs:element minOccurs="0" name="FlightID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FlightTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Luggage" nillable="true" type="tns:ArrayOfLuggage" />
+      <xs:element minOccurs="0" name="Passenger" nillable="true" type="tns:Passenger" />
+      <xs:element minOccurs="0" name="PassengerID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoardingPass" nillable="true" type="tns:BoardingPass" />
+  <xs:complexType name="Flight">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Aircraft" nillable="true" type="tns:Aircraft" />
+      <xs:element minOccurs="0" name="AircraftID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AircraftRoute" nillable="true" type="tns:AircraftRoute" />
+      <xs:element minOccurs="0" name="BoardingPass" nillable="true" type="tns:ArrayOfBoardingPass" />
+      <xs:element minOccurs="0" name="FlightID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RouteID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Flight" nillable="true" type="tns:Flight" />
+  <xs:complexType name="Aircraft">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AircraftID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AircraftName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Flight" nillable="true" type="tns:ArrayOfFlight" />
+      <xs:element minOccurs="0" name="SeatsNum" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="YearBuilt" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Aircraft" nillable="true" type="tns:Aircraft" />
+  <xs:complexType name="ArrayOfFlight">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Flight" nillable="true" type="tns:Flight" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFlight" nillable="true" type="tns:ArrayOfFlight" />
+  <xs:complexType name="AircraftRoute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ArrivalPointID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="tns:City" />
+      <xs:element minOccurs="0" name="City1" nillable="true" type="tns:City" />
+      <xs:element minOccurs="0" name="DeparturePointID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Flight" nillable="true" type="tns:ArrayOfFlight" />
+      <xs:element minOccurs="0" name="RouteID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AircraftRoute" nillable="true" type="tns:AircraftRoute" />
+  <xs:complexType name="City">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AircraftRoute" nillable="true" type="tns:ArrayOfAircraftRoute" />
+      <xs:element minOccurs="0" name="AircraftRoute1" nillable="true" type="tns:ArrayOfAircraftRoute" />
+      <xs:element minOccurs="0" name="CityID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CityName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="City" nillable="true" type="tns:City" />
+  <xs:complexType name="ArrayOfAircraftRoute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AircraftRoute" nillable="true" type="tns:AircraftRoute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAircraftRoute" nillable="true" type="tns:ArrayOfAircraftRoute" />
+  <xs:complexType name="ArrayOfLuggage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Luggage" nillable="true" type="tns:Luggage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLuggage" nillable="true" type="tns:ArrayOfLuggage" />
+  <xs:complexType name="Luggage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoardingPass" nillable="true" type="tns:BoardingPass" />
+      <xs:element minOccurs="0" name="BoardingPassID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LuggageID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Weight" nillable="true" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Luggage" nillable="true" type="tns:Luggage" />
+  <xs:complexType name="Passenger">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BoardingPass" nillable="true" type="tns:ArrayOfBoardingPass" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PassengerID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PassportNum" nillable="true" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Passenger" nillable="true" type="tns:Passenger" />
+  <xs:complexType name="AccountInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountInformation" nillable="true" type="tns:AccountInformation" />
+</xs:schema>

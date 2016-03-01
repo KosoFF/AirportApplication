@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="Airport.NewViews.AddAircraftPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Airport.NewViews"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:System="using:System"
+    mc:Ignorable="d"
+    RequestedTheme="Light"
+    DataContext="{Binding AddAircraftViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1.5*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" Grid.ColumnSpan="2" Text="{Binding WelcomeText}"/>
+        <Image Source="../Assets/airplane62 — копия (2).png" Height="100" Grid.ColumnSpan="2" />
+
+        <TextBlock Grid.Row="2" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Aircraft name:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5 10 10 10" Height="20" MaxWidth="400" HorizontalAlignment="Left" MinWidth="300"
+                 IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Text="{Binding AircraftName, Mode=TwoWay}"/>
+        
+        <TextBlock Grid.Row="3" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Year built:</TextBlock>
+        <DatePicker Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 10 10 10" Width="150" 
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Date="{Binding BuiltDate, Mode=TwoWay }"/>
+        
+        <TextBlock Grid.Row="4" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Number of seats:</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="5 10 10 10" Height="20" MaxWidth="400" HorizontalAlignment="Left" MinWidth="300"
+                 IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Text ="{Binding SeatsNum, Mode=TwoWay}"/>
+
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 0 5 0 " BorderThickness="1" BorderBrush="Black"
+                        Background="White" Content="Add aircraft" Command="{Binding AddAircraftCommand}"/>
+                <Button Grid.Column="1" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 5 0"  BorderThickness="1" BorderBrush="Black"
+                        Background="DarkGray" Content="Cancel" Command="{Binding BackCommand}"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

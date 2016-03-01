@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище AirportModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aircraft">
+          <Key>
+            <PropertyRef Name="AircraftID" />
+          </Key>
+          <Property Name="AircraftID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AircraftName" Type="nvarchar" MaxLength="255" />
+          <Property Name="SeatsNum" Type="int" />
+          <Property Name="YearBuilt" Type="date" />
+        </EntityType>
+        <EntityType Name="AircraftRoute">
+          <Key>
+            <PropertyRef Name="RouteID" />
+          </Key>
+          <Property Name="RouteID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DeparturePointID" Type="nvarchar" MaxLength="128" />
+          <Property Name="ArrivalPointID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="BoardingPass">
+          <Key>
+            <PropertyRef Name="BoardingPassID" />
+          </Key>
+          <Property Name="BoardingPassID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FlightID" Type="nvarchar" MaxLength="128" />
+          <Property Name="PassengerID" Type="nvarchar" MaxLength="128" />
+          <Property Name="CheckInManagerID" Type="nvarchar" MaxLength="128" />
+          <Property Name="FlightTime" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Check-in">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="255" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Flight">
+          <Key>
+            <PropertyRef Name="FlightID" />
+          </Key>
+          <Property Name="FlightID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RouteID" Type="nvarchar" MaxLength="128" />
+          <Property Name="AircraftID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Luggage">
+          <Key>
+            <PropertyRef Name="LuggageID" />
+          </Key>
+          <Property Name="LuggageID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Weight" Type="real" />
+          <Property Name="BoardingPassID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Passenger">
+          <Key>
+            <PropertyRef Name="PassengerID" />
+          </Key>
+          <Property Name="PassengerID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PassportNum" Type="bigint" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="BirthDate" Type="datetime2" Precision="7" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Airport.sys.database_firewall_rules" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AircraftRoute_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="AircraftRoute" Type="Self.AircraftRoute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="AircraftRoute">
+              <PropertyRef Name="DeparturePointID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AircraftRoute_City1">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="AircraftRoute" Type="Self.AircraftRoute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="AircraftRoute">
+              <PropertyRef Name="ArrivalPointID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoardingPass_Check-in">
+          <End Role="Check-in" Type="Self.Check-in" Multiplicity="0..1" />
+          <End Role="BoardingPass" Type="Self.BoardingPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Check-in">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="BoardingPass">
+              <PropertyRef Name="CheckInManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoardingPass_Flight">
+          <End Role="Flight" Type="Self.Flight" Multiplicity="0..1" />
+          <End Role="BoardingPass" Type="Self.BoardingPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flight">
+              <PropertyRef Name="FlightID" />
+            </Principal>
+            <Dependent Role="BoardingPass">
+              <PropertyRef Name="FlightID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoardingPass_Passenger">
+          <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+          <End Role="BoardingPass" Type="Self.BoardingPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passenger">
+              <PropertyRef Name="PassengerID" />
+            </Principal>
+            <Dependent Role="BoardingPass">
+              <PropertyRef Name="PassengerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_Aircraft">
+          <End Role="Aircraft" Type="Self.Aircraft" Multiplicity="0..1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aircraft">
+              <PropertyRef Name="AircraftID" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="AircraftID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_AircraftRoute">
+          <End Role="AircraftRoute" Type="Self.AircraftRoute" Multiplicity="0..1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AircraftRoute">
+              <PropertyRef Name="RouteID" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="RouteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Luggage_BoardingPass">
+          <End Role="BoardingPass" Type="Self.BoardingPass" Multiplicity="0..1" />
+          <End Role="Luggage" Type="Self.Luggage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoardingPass">
+              <PropertyRef Name="BoardingPassID" />
+            </Principal>
+            <Dependent Role="Luggage">
+              <PropertyRef Name="BoardingPassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="PassengersOnFlight" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FlightID" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище AirportModelContainer">
+          <EntitySet Name="Aircraft" EntityType="Self.Aircraft" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AircraftRoute" EntityType="Self.AircraftRoute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BoardingPass" EntityType="Self.BoardingPass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Check-in" EntityType="Self.Check-in" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flight" EntityType="Self.Flight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Luggage" EntityType="Self.Luggage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AircraftRoute_City" Association="Self.FK_AircraftRoute_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="AircraftRoute" EntitySet="AircraftRoute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AircraftRoute_City1" Association="Self.FK_AircraftRoute_City1">
+            <End Role="City" EntitySet="City" />
+            <End Role="AircraftRoute" EntitySet="AircraftRoute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoardingPass_Check-in" Association="Self.FK_BoardingPass_Check-in">
+            <End Role="Check-in" EntitySet="Check-in" />
+            <End Role="BoardingPass" EntitySet="BoardingPass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoardingPass_Flight" Association="Self.FK_BoardingPass_Flight">
+            <End Role="Flight" EntitySet="Flight" />
+            <End Role="BoardingPass" EntitySet="BoardingPass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoardingPass_Passenger" Association="Self.FK_BoardingPass_Passenger">
+            <End Role="Passenger" EntitySet="Passenger" />
+            <End Role="BoardingPass" EntitySet="BoardingPass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_Aircraft" Association="Self.FK_Flight_Aircraft">
+            <End Role="Aircraft" EntitySet="Aircraft" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_AircraftRoute" Association="Self.FK_Flight_AircraftRoute">
+            <End Role="AircraftRoute" EntitySet="AircraftRoute" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Luggage_BoardingPass" Association="Self.FK_Luggage_BoardingPass">
+            <End Role="BoardingPass" EntitySet="BoardingPass" />
+            <End Role="Luggage" EntitySet="Luggage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AirportModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aircraft">
+          <Key>
+            <PropertyRef Name="AircraftID" />
+          </Key>
+          <Property Name="AircraftID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AircraftName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SeatsNum" Type="Int32" />
+          <Property Name="YearBuilt" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Flight" Relationship="Self.FK_Flight_Aircraft" FromRole="Aircraft" ToRole="Flight" />
+        </EntityType>
+        <EntityType Name="AircraftRoute">
+          <Key>
+            <PropertyRef Name="RouteID" />
+          </Key>
+          <Property Name="RouteID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeparturePointID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ArrivalPointID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="City" Relationship="Self.FK_AircraftRoute_City" FromRole="AircraftRoute" ToRole="City" />
+          <NavigationProperty Name="City1" Relationship="Self.FK_AircraftRoute_City1" FromRole="AircraftRoute" ToRole="City" />
+          <NavigationProperty Name="Flight" Relationship="Self.FK_Flight_AircraftRoute" FromRole="AircraftRoute" ToRole="Flight" />
+        </EntityType>
+        <EntityType Name="BoardingPass">
+          <Key>
+            <PropertyRef Name="BoardingPassID" />
+          </Key>
+          <Property Name="BoardingPassID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FlightID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PassengerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInManagerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FlightTime" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Check_in" Relationship="Self.FK_BoardingPass_Check_in" FromRole="BoardingPass" ToRole="Check_in" />
+          <NavigationProperty Name="Flight" Relationship="Self.FK_BoardingPass_Flight" FromRole="BoardingPass" ToRole="Flight" />
+          <NavigationProperty Name="Passenger" Relationship="Self.FK_BoardingPass_Passenger" FromRole="BoardingPass" ToRole="Passenger" />
+          <NavigationProperty Name="Luggage" Relationship="Self.FK_Luggage_BoardingPass" FromRole="BoardingPass" ToRole="Luggage" />
+        </EntityType>
+        <EntityType Name="Check_in">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BoardingPass" Relationship="Self.FK_BoardingPass_Check_in" FromRole="Check_in" ToRole="BoardingPass" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AircraftRoute" Relationship="Self.FK_AircraftRoute_City" FromRole="City" ToRole="AircraftRoute" />
+          <NavigationProperty Name="AircraftRoute1" Relationship="Self.FK_AircraftRoute_City1" FromRole="City" ToRole="AircraftRoute" />
+        </EntityType>
+        <EntityType Name="Flight">
+          <Key>
+            <PropertyRef Name="FlightID" />
+          </Key>
+          <Property Name="FlightID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RouteID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AircraftID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Aircraft" Relationship="Self.FK_Flight_Aircraft" FromRole="Flight" ToRole="Aircraft" />
+          <NavigationProperty Name="AircraftRoute" Relationship="Self.FK_Flight_AircraftRoute" FromRole="Flight" ToRole="AircraftRoute" />
+          <NavigationProperty Name="BoardingPass" Relationship="Self.FK_BoardingPass_Flight" FromRole="Flight" ToRole="BoardingPass" />
+        </EntityType>
+        <EntityType Name="Luggage">
+          <Key>
+            <PropertyRef Name="LuggageID" />
+          </Key>
+          <Property Name="LuggageID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Weight" Type="Single" />
+          <Property Name="BoardingPassID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BoardingPass" Relationship="Self.FK_Luggage_BoardingPass" FromRole="Luggage" ToRole="BoardingPass" />
+        </EntityType>
+        <EntityType Name="Passenger">
+          <Key>
+            <PropertyRef Name="PassengerID" />
+          </Key>
+          <Property Name="PassengerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassportNum" Type="Int64" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="BirthDate" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="BoardingPass" Relationship="Self.FK_BoardingPass_Passenger" FromRole="Passenger" ToRole="BoardingPass" />
+        </EntityType>
+        <Association Name="FK_Flight_Aircraft">
+          <End Role="Aircraft" Type="Self.Aircraft" Multiplicity="0..1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aircraft">
+              <PropertyRef Name="AircraftID" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="AircraftID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AircraftRoute_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="AircraftRoute" Type="Self.AircraftRoute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="AircraftRoute">
+              <PropertyRef Name="DeparturePointID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AircraftRoute_City1">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="AircraftRoute" Type="Self.AircraftRoute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="AircraftRoute">
+              <PropertyRef Name="ArrivalPointID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flight_AircraftRoute">
+          <End Role="AircraftRoute" Type="Self.AircraftRoute" Multiplicity="0..1" />
+          <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AircraftRoute">
+              <PropertyRef Name="RouteID" />
+            </Principal>
+            <Dependent Role="Flight">
+              <PropertyRef Name="RouteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoardingPass_Check_in">
+          <End Role="Check_in" Type="Self.Check_in" Multiplicity="0..1" />
+          <End Role="BoardingPass" Type="Self.BoardingPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Check_in">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="BoardingPass">
+              <PropertyRef Name="CheckInManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoardingPass_Flight">
+          <End Role="Flight" Type="Self.Flight" Multiplicity="0..1" />
+          <End Role="BoardingPass" Type="Self.BoardingPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flight">
+              <PropertyRef Name="FlightID" />
+            </Principal>
+            <Dependent Role="BoardingPass">
+              <PropertyRef Name="FlightID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoardingPass_Passenger">
+          <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+          <End Role="BoardingPass" Type="Self.BoardingPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passenger">
+              <PropertyRef Name="PassengerID" />
+            </Principal>
+            <Dependent Role="BoardingPass">
+              <PropertyRef Name="PassengerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Luggage_BoardingPass">
+          <End Role="BoardingPass" Type="Self.BoardingPass" Multiplicity="0..1" />
+          <End Role="Luggage" Type="Self.Luggage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoardingPass">
+              <PropertyRef Name="BoardingPassID" />
+            </Principal>
+            <Dependent Role="Luggage">
+              <PropertyRef Name="BoardingPassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AirportEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aircraft" EntityType="Self.Aircraft" />
+          <EntitySet Name="AircraftRoute" EntityType="Self.AircraftRoute" />
+          <EntitySet Name="BoardingPass" EntityType="Self.BoardingPass" />
+          <EntitySet Name="Check_in" EntityType="Self.Check_in" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Flight" EntityType="Self.Flight" />
+          <EntitySet Name="Luggage" EntityType="Self.Luggage" />
+          <EntitySet Name="Passenger" EntityType="Self.Passenger" />
+          <AssociationSet Name="FK_Flight_Aircraft" Association="Self.FK_Flight_Aircraft">
+            <End Role="Aircraft" EntitySet="Aircraft" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AircraftRoute_City" Association="Self.FK_AircraftRoute_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="AircraftRoute" EntitySet="AircraftRoute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AircraftRoute_City1" Association="Self.FK_AircraftRoute_City1">
+            <End Role="City" EntitySet="City" />
+            <End Role="AircraftRoute" EntitySet="AircraftRoute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flight_AircraftRoute" Association="Self.FK_Flight_AircraftRoute">
+            <End Role="AircraftRoute" EntitySet="AircraftRoute" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoardingPass_Check_in" Association="Self.FK_BoardingPass_Check_in">
+            <End Role="Check_in" EntitySet="Check_in" />
+            <End Role="BoardingPass" EntitySet="BoardingPass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoardingPass_Flight" Association="Self.FK_BoardingPass_Flight">
+            <End Role="Flight" EntitySet="Flight" />
+            <End Role="BoardingPass" EntitySet="BoardingPass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoardingPass_Passenger" Association="Self.FK_BoardingPass_Passenger">
+            <End Role="Passenger" EntitySet="Passenger" />
+            <End Role="BoardingPass" EntitySet="BoardingPass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Luggage_BoardingPass" Association="Self.FK_Luggage_BoardingPass">
+            <End Role="BoardingPass" EntitySet="BoardingPass" />
+            <End Role="Luggage" EntitySet="Luggage" />
+          </AssociationSet>
+          <FunctionImport Name="PassengersOnFlight" ReturnType="Collection(AirportModel.PassengersOnFlight_Result)">
+          <Parameter Name="FlightID" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="database_firewall_rules" EntityType="AirportModel.database_firewall_rules" />
+        </EntityContainer>
+        <ComplexType Name="PassengersOnFlight_Result">
+          <Property Type="String" Name="BoardingPassID" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="FlightID" Nullable="false" MaxLength="128" />
+          <Property Type="DateTime" Name="FlightTime" Nullable="true" />
+          <Property Type="String" Name="DeparturePoint" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ArrivalPoint" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="manager" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AirportModelContainer" CdmEntityContainer="AirportEntities">
+          <EntitySetMapping Name="Aircraft">
+            <EntityTypeMapping TypeName="AirportModel.Aircraft">
+              <MappingFragment StoreEntitySet="Aircraft">
+                <ScalarProperty Name="AircraftID" ColumnName="AircraftID" />
+                <ScalarProperty Name="AircraftName" ColumnName="AircraftName" />
+                <ScalarProperty Name="SeatsNum" ColumnName="SeatsNum" />
+                <ScalarProperty Name="YearBuilt" ColumnName="YearBuilt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AircraftRoute">
+            <EntityTypeMapping TypeName="AirportModel.AircraftRoute">
+              <MappingFragment StoreEntitySet="AircraftRoute">
+                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+                <ScalarProperty Name="DeparturePointID" ColumnName="DeparturePointID" />
+                <ScalarProperty Name="ArrivalPointID" ColumnName="ArrivalPointID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BoardingPass">
+            <EntityTypeMapping TypeName="AirportModel.BoardingPass">
+              <MappingFragment StoreEntitySet="BoardingPass">
+                <ScalarProperty Name="BoardingPassID" ColumnName="BoardingPassID" />
+                <ScalarProperty Name="FlightID" ColumnName="FlightID" />
+                <ScalarProperty Name="PassengerID" ColumnName="PassengerID" />
+                <ScalarProperty Name="CheckInManagerID" ColumnName="CheckInManagerID" />
+                <ScalarProperty Name="FlightTime" ColumnName="FlightTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Check_in">
+            <EntityTypeMapping TypeName="AirportModel.Check_in">
+              <MappingFragment StoreEntitySet="Check-in">
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="AirportModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flight">
+            <EntityTypeMapping TypeName="AirportModel.Flight">
+              <MappingFragment StoreEntitySet="Flight">
+                <ScalarProperty Name="FlightID" ColumnName="FlightID" />
+                <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+                <ScalarProperty Name="AircraftID" ColumnName="AircraftID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Luggage">
+            <EntityTypeMapping TypeName="AirportModel.Luggage">
+              <MappingFragment StoreEntitySet="Luggage">
+                <ScalarProperty Name="LuggageID" ColumnName="LuggageID" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="BoardingPassID" ColumnName="BoardingPassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passenger">
+            <EntityTypeMapping TypeName="AirportModel.Passenger">
+              <MappingFragment StoreEntitySet="Passenger">
+                <ScalarProperty Name="PassengerID" ColumnName="PassengerID" />
+                <ScalarProperty Name="PassportNum" ColumnName="PassportNum" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PassengersOnFlight" FunctionName="Хранилище AirportModel.PassengersOnFlight">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AirportModel.PassengersOnFlight_Result">
+                <ScalarProperty Name="BoardingPassID" ColumnName="BoardingPassID" />
+                <ScalarProperty Name="FlightID" ColumnName="FlightID" />
+                <ScalarProperty Name="FlightTime" ColumnName="FlightTime" />
+                <ScalarProperty Name="DeparturePoint" ColumnName="DeparturePoint" />
+                <ScalarProperty Name="ArrivalPoint" ColumnName="ArrivalPoint" />
+                <ScalarProperty Name="manager" ColumnName="manager" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="AirportModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

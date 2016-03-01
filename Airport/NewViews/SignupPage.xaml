@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="Airport.NewViews.SignupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Airport.NewViews"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding SignupViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.7*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.ColumnSpan="3" Grid.RowSpan="7" Source="../Assets/ManagerRegistrationPageBackground.png" Stretch="Fill"/>
+
+        <StackPanel Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <TextBlock FontSize="18" Margin="10 0 0 0" Foreground="White" ><Run Text="New manager registration form"/></TextBlock>
+            <TextBlock FontSize="14" Margin="10 0 0 0" Foreground="White" ><Run Text="All fields are required"/></TextBlock>
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 5 0"><Run Text="First name:"/></TextBlock>
+        <TextBlock Grid.Row="2" FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 5 0"><Run Text="Last name:"/></TextBlock>
+        <TextBlock Grid.Row="3" FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 5 0"><Run Text="Login:"/></TextBlock>
+        <TextBlock Grid.Row="4" FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 5 0"><Run Text="Password:"/></TextBlock>
+        <TextBlock Grid.Row="5" FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 5 0"><Run Text="Repeat password:"/></TextBlock>
+        <TextBox Height="20" Text="{Binding Firstname, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Grid.Row="1" x:Name="ManagerFirstName" Grid.Column="1" Grid.ColumnSpan="2" Margin="5 7 10 7"/>
+        <TextBox Height="20" Text="{Binding Secondname, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Grid.Row="2" x:Name="ManagerLastName" Grid.Column="1" Grid.ColumnSpan="2" Margin="5 7 10 7"/>
+        <TextBox Height="20" Text="{Binding Username, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Grid.Row="3" x:Name="ManagerLogin"  Grid.Column="1" Grid.ColumnSpan="2" Margin="5 7 10 7"/>
+        <PasswordBox Password="{Binding Password, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Height="20" Grid.Row="4" x:Name="ManagerPassword" Grid.Column="1" Grid.ColumnSpan="2" Margin="5 7 10 7"/>
+        <PasswordBox Grid.Row="5" Password ="{Binding RepeatPassword, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Height="20" Grid.Column="1" Grid.ColumnSpan="2" Margin="5 7 10 7"/>
+
+        <Image Grid.Column="2"  Grid.Row="0" Source="../Assets/airplane62 — копия.png" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
+
+        <Button  Grid.Row="7" Grid.Column="1" Width="100" Height="30" FontSize="14" HorizontalAlignment="Left" Foreground="Black" Background="White" Margin="5 0 5 0" 
+                 Content="Register" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" BorderThickness="1" BorderBrush="Black"
+                    Command="{Binding SignUpCommand}"/>
+        <Button Grid.Row="7" Grid.Column="2" Width="100" Height="30" FontSize="14" HorizontalAlignment="Right" Foreground="Black" Background="DarkGray" Margin="5 0 10 0" 
+                Content="Cancel" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" BorderThickness="1" BorderBrush="Black"
+                    Command="{Binding BackCommand}"/>
+
+    </Grid>
+</Page>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3616daa49d2d48f48469bd9732901ffb" Name="Diagram1">
+        <EntityTypeShape EntityType="AirportModel.Aircraft" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirportModel.AircraftRoute" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirportModel.BoardingPass" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirportModel.Check_in" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirportModel.City" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirportModel.Flight" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirportModel.Luggage" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirportModel.Passenger" Width="1.5" PointX="9.25" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="AirportModel.FK_Flight_Aircraft" ManuallyRouted="false" />
+        <AssociationConnector Association="AirportModel.FK_AircraftRoute_City" ManuallyRouted="false" />
+        <AssociationConnector Association="AirportModel.FK_AircraftRoute_City1" ManuallyRouted="false" />
+        <AssociationConnector Association="AirportModel.FK_Flight_AircraftRoute" ManuallyRouted="false" />
+        <AssociationConnector Association="AirportModel.FK_BoardingPass_Check_in" ManuallyRouted="false" />
+        <AssociationConnector Association="AirportModel.FK_BoardingPass_Flight" ManuallyRouted="false" />
+        <AssociationConnector Association="AirportModel.FK_BoardingPass_Passenger" ManuallyRouted="false" />
+        <AssociationConnector Association="AirportModel.FK_Luggage_BoardingPass" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AirportModel.database_firewall_rules" Width="1.5" PointX="0.75" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
