@@ -7,7 +7,7 @@ namespace SqlService
 {
     // ПРИМЕЧАНИЕ. Команду "Переименовать" в меню "Рефакторинг" можно использовать для одновременного изменения имени класса "Service" в коде, SVC-файле и файле конфигурации.
     // ПРИМЕЧАНИЕ. Чтобы запустить клиент проверки WCF для тестирования службы, выберите элементы Service.svc или Service.svc.cs в обозревателе решений и начните отладку.
-    public class Service1 : IService
+    public class Service1 : IService, IWebService
     {
         #region Login
         public bool SignUp(Check_in userInsert)
@@ -427,5 +427,117 @@ namespace SqlService
             }
         }
         #endregion //Boarding pass
+
+        #region WebClient 
+        public List<BoardingPassInformation> GetBoardingPass()
+        {
+            try
+            {
+                using (var context = new AirportEntities())
+                {
+
+                    var temp = context.BoardingPass.
+                    Select(a => new BoardingPassInformation()
+                    {
+                        BoardingPassId = a.BoardingPassID,
+                        CheckInManagerId = a.CheckInManagerID,
+                        FlightId = a.FlightID,
+                        FlightTime = a.FlightTime.ToString(),
+                        PassengerId = a.PassengerID
+                    }).ToList();
+                    return temp;
+
+                    //var a = context.BoardingPass.FirstOrDefault(); 
+                    //return new BoardingPassInformation() 
+                    //{ 
+                    // BoardingPassId = a.BoardingPassID, 
+                    // CheckInManagerId = a.CheckInManagerID, 
+                    // FlightId = a.FlightID, 
+                    // FlightTime = a.FlightTime.Value, 
+                    // PassengerId = a.PassengerID 
+                    //}; 
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Failed to get passenger: " + ex.Message);
+                return null;
+            }
+
+        }
+        public BoardingPassFullInformation GetBoardingPassById(string passId)
+        {
+            try
+            {
+                using (var context = new AirportEntities())
+                {
+
+                    var temp = context.BoardingPass.First(a => a.BoardingPassID == passId);
+
+                    return new BoardingPassFullInformation()
+                    {
+                        BoardingPassId = temp.BoardingPassID,
+                        FlightInformation = new FlightInformation()
+                        {
+                            FlightId = temp.Flight.FlightID,
+                            AircraftInformation = new AircraftInformation()
+                            {
+                                AircraftId = temp.Flight.Aircraft.AircraftID,
+                                AircraftName = temp.Flight.Aircraft.AircraftName,
+                                SeatsNum = temp.Flight.Aircraft.SeatsNum ?? default(int),
+                                YearBuilt = temp.Flight.Aircraft.YearBuilt.ToString()
+                            },
+                            RouteInformation = new RouteInformation()
+                            {
+                                RouteId = temp.Flight.AircraftRoute.RouteID,
+                                ArrivalCity = new CityInformation()
+                                {
+                                    CityId = temp.Flight.AircraftRoute.City1.CityID,
+                                    CityName = temp.Flight.AircraftRoute.City1.CityName
+                                },
+                                DepartureCity = new CityInformation()
+                                {
+                                    CityId = temp.Flight.AircraftRoute.City.CityID,
+                                    CityName = temp.Flight.AircraftRoute.City.CityName
+                                }
+                            }
+                        },
+                        FlightTime = temp.FlightTime.ToString(),
+                        ManagerInformation = new ManagerInformation()
+                        {
+                            FirstName = temp.Check_in.FirstName,
+                            LastName = temp.Check_in.LastName,
+                            ManagerId = temp.Check_in.ManagerID
+                        },
+                        PassengerInformation = new PassengerInformation()
+                        {
+                            PassengerId = temp.Passenger.PassengerID,
+                            BirthDate = temp.Passenger.BirthDate.ToString(),
+                            FirstName = temp.Passenger.FirstName,
+                            LastName = temp.Passenger.LastName,
+                            Gender = temp.Passenger.Gender ?? default(bool),
+                            PassportNum = temp.Passenger.PassportNum ?? default(long)
+                        }
+                    };
+
+                    //var a = context.BoardingPass.FirstOrDefault(); 
+                    //return new BoardingPassInformation() 
+                    //{ 
+                    // BoardingPassId = a.BoardingPassID, 
+                    // CheckInManagerId = a.CheckInManagerID, 
+                    // FlightId = a.FlightID, 
+                    // FlightTime = a.FlightTime.Value, 
+                    // PassengerId = a.PassengerID 
+                    //}; 
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Failed to get boarding pass: " + ex.Message);
+                return null;
+            }
+
+        }
+        #endregion //Webclient
     }
 }

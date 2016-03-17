@@ -111,6 +111,7 @@
     <Compile Include="Flight.cs">
       <DependentUpon>AirportDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="IWebService.cs" />
     <Compile Include="Luggage.cs">
       <DependentUpon>AirportDataModel.tt</DependentUpon>
     </Compile>
