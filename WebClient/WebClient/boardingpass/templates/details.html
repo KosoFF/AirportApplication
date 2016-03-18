@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>Boarding pass full information</title>
+</head>
+<body>
+<table border="1" align="center">
+    <caption>BOARDING PASS</caption>
+    <tr>
+        <th>Boarding pass id</th>
+        <th> {{ content.BoardingPassId}}</th>
+
+    </tr>
+</table>
+
+<table border="1" align="center">
+    <caption>FLIGHT</caption>
+    <tr>
+        <th >Flight id</th>
+        <th> {{ content.FlightInformation.FlightId}}</th>
+    </tr>
+    <tr>
+        <th >Flight time</th>
+        <th> {{ content.FlightTime }}</th>
+    </tr>
+    <tr>
+        <th colspan="2"> Route</th>
+    </tr>
+    <tr>
+        <th > Route id</th>
+        <th> {{ content.FlightInformation.RouteInformation.RouteId}}</th>
+    </tr>
+    <tr>
+        <th colspan="2"> Departure city</th>
+    </tr>
+    <tr>
+        <th > City id</th>
+        <th> {{ content.FlightInformation.RouteInformation.DepartureCity.CityId}}</th>
+    </tr>
+    <tr>
+        <th > City name</th>
+        <th> {{ content.FlightInformation.RouteInformation.DepartureCity.CityName}}</th>
+    </tr>
+    <tr>
+        <th colspan="2"> Arrival city</th>
+    </tr>
+    <tr>
+        <th > City id</th>
+        <th> {{ content.FlightInformation.RouteInformation.ArrivalCity.CityId}}</th>
+    </tr>
+    <tr>
+        <th > City name</th>
+        <th> {{ content.FlightInformation.RouteInformation.ArrivalCity.CityName}}</th>
+    </tr>
+
+
+    <tr>
+        <th colspan="2">Aircraft information</th>
+    </tr>
+    <tr>
+        <th > Aircraft id</th>
+        <th> {{ content.FlightInformation.AircraftInformation.AircraftId}}</th>
+    </tr>
+    <tr>
+        <th > Aircraft name</th>
+        <th> {{ content.FlightInformation.AircraftInformation.AircraftName}}</th>
+    </tr>
+    <tr>
+        <th > Number of seats </th>
+        <th> {{ content.FlightInformation.AircraftInformation.SeatsNum}}</th>
+    </tr>
+    <tr>
+        <th > Year built </th>
+        <th> {{ content.FlightInformation.AircraftInformation.YearBuilt}}</th>
+    </tr>
+
+</table>
+
+<table border="1" align="center">
+    <caption>PASSENGER</caption>
+    <tr>
+        <th>Passenger id</th>
+        <th> {{ content.PassengerInformation.PassengerId}} </th>
+
+    </tr>
+    <tr>
+        <th>First name</th>
+        <th> {{ content.PassengerInformation.FirstName}} </th>
+
+    </tr>
+    <tr>
+        <th>Last name</th>
+        <th> {{ content.PassengerInformation.LastName}} </th>
+
+    </tr>
+    <tr>
+        <th>Gender</th>
+        <th>
+            {% if content.PassengerInformation.Gender %}
+            Male
+            {% else %}
+            Female
+            {% endif %}
+        </th>
+    </tr>
+    <tr>
+        <th>Birth date</th>
+        <th> {{ content.PassengerInformation.BirthDate}} </th>
+
+    </tr>
+    <tr>
+        <th>Passport number</th>
+        <th> {{ content.PassengerInformation.PassportNum}} </th>
+    </tr>
+</table>
+<table border="1" align="center">
+    <caption>MANAGER</caption>
+    <tr>
+        <th>Manager id</th>
+        <th> {{ content.ManagerInformation.ManagerId}}</th>
+    </tr>
+    <tr>
+        <th>First name</th>
+        <th> {{ content.ManagerInformation.FirstName}}</th>
+    </tr>
+    <tr>
+        <th>LastName</th>
+        <th> {{ content.ManagerInformation.LastName}}</th>
+    </tr>
+</table>
+
+</body>
+</html>

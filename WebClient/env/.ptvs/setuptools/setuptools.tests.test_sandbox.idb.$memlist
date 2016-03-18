@@ -1,0 +1,12 @@
+DirectorySandbox
+has_win32com
+os
+types
+tempfile
+SandboxViolation
+setuptools
+shutil
+pkg_resources
+TestSandbox
+sys
+unittest

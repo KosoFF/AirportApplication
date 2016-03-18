@@ -1,0 +1,15 @@
+site
+easy_install_pkg
+SETUP_PY
+os
+Distribution
+DistutilsError
+tempfile
+test
+shutil
+StringIO
+TEST_PY
+NS_INIT
+TestTestTest
+sys
+unittest

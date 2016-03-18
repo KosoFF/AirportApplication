@@ -1,0 +1,16 @@
+sys
+PY_COMPILED
+PKG_DIRECTORY
+imp
+PY_SOURCE
+LooseVersion
+__all__
+Require
+extract_constant
+marshal
+StrictVersion
+generators
+_iter_code
+get_module_constant
+find_module
+PY_FROZEN

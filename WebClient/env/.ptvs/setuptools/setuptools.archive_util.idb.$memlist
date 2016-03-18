@@ -1,0 +1,15 @@
+unpack_tarfile
+extraction_drivers
+zipfile
+os
+__all__
+DistutilsError
+tarfile
+shutil
+posixpath
+unpack_zipfile
+default_filter
+unpack_directory
+unpack_archive
+UnrecognizedFormat
+ensure_directory

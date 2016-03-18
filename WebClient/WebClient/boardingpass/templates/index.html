@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Boarding passes</title>
+</head>
+<body >
+
+<table border="1" align="center">
+    <caption>BOARDING PASSES</caption>
+    <tr>
+        <th>Boarding pass id</th>
+        <th>Passenger id</th>
+        <th>Manager id</th>
+        <th>Flight id</th>
+        <th>Flight time</th>
+    </tr>
+    {% for item in content %}
+    <tr>
+        <td>{{ item.boardingpass_id}}</td>
+        <td>{{ item.passenger_id}}</td>
+        <td>{{ item.checkin_manager_id}}</td>
+        <td>{{ item.flight_id}}</td>
+        <td>{{ item.flight_time }}</td>
+        <td>
+            <a href="{% url 'details' pass_id=item.boardingpass_id %}">More information</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

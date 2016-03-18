@@ -1,0 +1,10 @@
+distutils
+get_abbr_impl
+supported_tags
+sys
+warnings
+sysconfig
+supported_tags_noarch
+get_supported
+get_impl_ver
+get_platform
