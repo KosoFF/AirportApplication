@@ -1,0 +1,15 @@
+_default_revctrl
+walk_revctrl
+glob
+pkg_resources
+convert_path
+sys
+sdist
+svn_utils
+re_finder
+log
+os
+_sdist
+READMES
+re
+finders

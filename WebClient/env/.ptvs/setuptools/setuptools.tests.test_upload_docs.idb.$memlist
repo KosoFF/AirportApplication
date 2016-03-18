@@ -1,0 +1,11 @@
+site
+zipfile
+os
+Distribution
+tempfile
+shutil
+SETUP_PY
+upload_docs
+TestUploadDocsTest
+sys
+unittest

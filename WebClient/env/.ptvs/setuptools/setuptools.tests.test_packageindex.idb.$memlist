@@ -1,0 +1,14 @@
+distutils
+TestPackageIndex
+pkg_resources
+IndexServer
+httplib
+urllib2
+setuptools
+HTTPError
+TestContentCheckers
+os
+pathname2url
+unicode
+sys
+unittest
