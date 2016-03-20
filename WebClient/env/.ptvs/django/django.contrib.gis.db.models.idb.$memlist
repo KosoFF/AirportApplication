@@ -10,7 +10,7 @@ MultiLineStringField
 cached_property
 URLField
 SET_NULL
-python_2_unicode_compatible
+DictWrapper
 Expression
 connection
 DecimalField
@@ -91,7 +91,7 @@ warn_about_renamed_method
 FloatField
 manager
 Case
-DictWrapper
+python_2_unicode_compatible
 wraps
 ExpressionWrapper
 BinaryField

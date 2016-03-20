@@ -16,40 +16,58 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.7*" />
+            <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <Image Grid.ColumnSpan="3" Grid.RowSpan="7" Source="../Assets/ManagerRegistrationPageBackground.png" Stretch="Fill"/>
+        <Image Source="../Assets/AllScreensBackground.png" Stretch="Fill" Grid.RowSpan="7" Grid.ColumnSpan="3"></Image>
 
-        <StackPanel Grid.ColumnSpan="2" VerticalAlignment="Center">
-            <TextBlock FontSize="18" Margin="10 0 0 0" Foreground="White" ><Run Text="New manager registration form"/></TextBlock>
-            <TextBlock FontSize="14" Margin="10 0 0 0" Foreground="White" ><Run Text="All fields are required"/></TextBlock>
+        <StackPanel Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+            <TextBlock FontSize="18" Margin="10 0 0 0" Foreground="#041b35" ><Run Text="New manager registration form"/></TextBlock>
+            <TextBlock FontSize="14" Margin="10 0 0 0" Foreground="#041b35" ><Run Text="All fields are required"/></TextBlock>
         </StackPanel>
 
-        <TextBlock Grid.Row="1" FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 5 0"><Run Text="First name:"/></TextBlock>
-        <TextBlock Grid.Row="2" FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 5 0"><Run Text="Last name:"/></TextBlock>
-        <TextBlock Grid.Row="3" FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 5 0"><Run Text="Login:"/></TextBlock>
-        <TextBlock Grid.Row="4" FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 5 0"><Run Text="Password:"/></TextBlock>
-        <TextBlock Grid.Row="5" FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0 5 0"><Run Text="Repeat password:"/></TextBlock>
-        <TextBox Height="20" Text="{Binding Firstname, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Grid.Row="1" x:Name="ManagerFirstName" Grid.Column="1" Grid.ColumnSpan="2" Margin="5 7 10 7"/>
-        <TextBox Height="20" Text="{Binding Secondname, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Grid.Row="2" x:Name="ManagerLastName" Grid.Column="1" Grid.ColumnSpan="2" Margin="5 7 10 7"/>
-        <TextBox Height="20" Text="{Binding Username, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Grid.Row="3" x:Name="ManagerLogin"  Grid.Column="1" Grid.ColumnSpan="2" Margin="5 7 10 7"/>
-        <PasswordBox Password="{Binding Password, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Height="20" Grid.Row="4" x:Name="ManagerPassword" Grid.Column="1" Grid.ColumnSpan="2" Margin="5 7 10 7"/>
-        <PasswordBox Grid.Row="5" Password ="{Binding RepeatPassword, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Height="20" Grid.Column="1" Grid.ColumnSpan="2" Margin="5 7 10 7"/>
+        <TextBlock Grid.Row="1" FontSize="14" Foreground="#041b35" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2 0 5 0"><Run Text="First name:"/></TextBlock>
+        <TextBlock Grid.Row="2" FontSize="14" Foreground="#041b35" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2 0 5 0"><Run Text="Last name:"/></TextBlock>
+        <TextBlock Grid.Row="3" FontSize="14" Foreground="#041b35" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2 0 5 0"><Run Text="Login:"/></TextBlock>
+        <TextBlock Grid.Row="4" FontSize="14" Foreground="#041b35" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2 0 5 0"><Run Text="Password:"/></TextBlock>
+        <TextBlock Grid.Row="5" FontSize="14" Foreground="#041b35" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2 0 5 0"><Run Text="Repeat password:"/></TextBlock>
+        <TextBox Height="20" BorderBrush="#041b35" BorderThickness="0.5" HorizontalAlignment="Stretch" 
+                 Text="{Binding Firstname, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" 
+                 Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <TextBox Height="20" BorderBrush="#041b35" BorderThickness="0.5" HorizontalAlignment="Stretch" 
+                 Text="{Binding Secondname, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" 
+                 Grid.Row="2" Grid.Column="1" Margin="5"/>
+        <TextBox Height="20" BorderBrush="#041b35" BorderThickness="0.5" HorizontalAlignment="Stretch"
+                 Text="{Binding Username, Mode=TwoWay}" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" 
+                 Grid.Row="3" Grid.Column="1" Margin="5"/>
+        <PasswordBox Password="{Binding Password, Mode=TwoWay}" HorizontalAlignment="Stretch"
+                     IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
+                     Height="20" Grid.Row="4" Grid.Column="1" Margin="5" BorderBrush="#041b35" BorderThickness="0.5"/>
+        <PasswordBox Grid.Row="5" Password ="{Binding RepeatPassword, Mode=TwoWay}" HorizontalAlignment="Stretch" 
+                     IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" 
+                     Height="20" Grid.Column="1" Margin="5" BorderBrush="#041b35" BorderThickness="0.5"/>
 
-        <Image Grid.Column="2"  Grid.Row="0" Source="../Assets/airplane62 — копия.png" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
+        <Image Grid.Column="1"  Grid.Row="0" Source="../Assets/logo.png" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10"/>
 
-        <Button  Grid.Row="7" Grid.Column="1" Width="100" Height="30" FontSize="14" HorizontalAlignment="Left" Foreground="Black" Background="White" Margin="5 0 5 0" 
-                 Content="Register" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" BorderThickness="1" BorderBrush="Black"
+        <StackPanel Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" Width="100" Height="30" FontSize="14" HorizontalAlignment="Right" Margin="0 0 5 0" Foreground="#041b35" Background="White" 
+                 Content="Register" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" BorderThickness="0.5" BorderBrush="#041b35"
                     Command="{Binding SignUpCommand}"/>
-        <Button Grid.Row="7" Grid.Column="2" Width="100" Height="30" FontSize="14" HorizontalAlignment="Right" Foreground="Black" Background="DarkGray" Margin="5 0 10 0" 
-                Content="Cancel" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" BorderThickness="1" BorderBrush="Black"
+                <Button Grid.Column="1" Width="100" Height="30" FontSize="14" HorizontalAlignment="Left" Margin="0 0 5 0" Foreground="#041b35" Background="LightSlateGray"  
+                Content="Cancel" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" BorderThickness="0.5" BorderBrush="#041b35"
                     Command="{Binding BackCommand}"/>
-
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>

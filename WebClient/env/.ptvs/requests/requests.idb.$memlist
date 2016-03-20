@@ -12,7 +12,6 @@ Session
 structures
 codes
 exceptions
-packages
 Timeout
 request
 PreparedRequest

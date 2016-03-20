@@ -20,26 +20,35 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" Grid.ColumnSpan="2" Text="{Binding WelcomeText}"/>
+        <Image Source="../Assets/AllScreensBackground.png" Stretch="Fill" Grid.RowSpan="8" Grid.ColumnSpan="3" />
+
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" Grid.ColumnSpan="3" Text="{Binding WelcomeText}"/>
         <Image Source="../Assets/airplane62 — копия (2).png" Height="100" Grid.ColumnSpan="2" />
 
-        <TextBlock Grid.Row="2" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Aircraft name:</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="5 10 10 10" Height="20" MaxWidth="400" HorizontalAlignment="Left" MinWidth="300"
-                 IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Text="{Binding AircraftName, Mode=TwoWay}"/>
-        
-        <TextBlock Grid.Row="3" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Year built:</TextBlock>
-        <DatePicker Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 10 10 10" Width="150" 
-                    IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Date="{Binding BuiltDate, Mode=TwoWay }"/>
-        
-        <TextBlock Grid.Row="4" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Number of seats:</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="1" Margin="5 10 10 10" Height="20" MaxWidth="400" HorizontalAlignment="Left" MinWidth="300"
-                 IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Text ="{Binding SeatsNum, Mode=TwoWay}"/>
+        <TextBlock Grid.Row="2" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#041b35">
+    		<Run Text="Aircraft name:"/>
+        </TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Height="20" HorizontalAlignment="Stretch" BorderThickness="0.5" BorderBrush="#041b35" Margin="5"
+    		IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Text="{Binding AircraftName, Mode=TwoWay}"/>
 
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center">
+        <TextBlock Grid.Row="3" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#041b35">
+    		<Run Text="Year built:"/>
+        </TextBlock>
+        <DatePicker Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0.5" BorderBrush="#041b35" Margin="5"
+    		IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Date="{Binding BuiltDate, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="4" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#041b35">
+    		<Run Text="Number of seats:"/>
+        </TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" Height="20" HorizontalAlignment="Stretch" BorderThickness="0.5" BorderBrush="#041b35" Margin="5"
+    		IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" Text ="{Binding SeatsNum, Mode=TwoWay}"/>
+
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Center">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
@@ -48,11 +57,14 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 0 5 0 " BorderThickness="1" BorderBrush="Black"
-                        Background="White" Content="Add aircraft" Command="{Binding AddAircraftCommand}"/>
-                <Button Grid.Column="1" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 5 0"  BorderThickness="1" BorderBrush="Black"
-                        Background="DarkGray" Content="Cancel" Command="{Binding BackCommand}"/>
+                <Button Grid.Column="0" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" Foreground="#041b35"
+    				HorizontalAlignment="Right" Margin="5 0 5 0 " BorderThickness="0.5" BorderBrush="#041b35"
+    				Background="White" Content="Add aircraft" Command="{Binding AddAircraftCommand}"/>
+                <Button Grid.Column="1" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" Foreground="#041b35"
+    				HorizontalAlignment="Left" Margin="5 0 5 0" BorderThickness="0.5" BorderBrush="#041b35"
+    				Background="LightSlateGray" Content="Cancel" Command="{Binding BackCommand}"/>
             </Grid>
         </StackPanel>
+        <Image Source="../Assets/logo.png" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="20" />
     </Grid>
 </Page>
