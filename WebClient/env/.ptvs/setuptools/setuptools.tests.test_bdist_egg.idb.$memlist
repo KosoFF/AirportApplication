@@ -1,0 +1,15 @@
+site
+easy_install_pkg
+SETUP_PY
+os
+Distribution
+DistutilsError
+sys
+test_suite
+shutil
+StringIO
+TestDevelopTest
+bdist_egg
+tempfile
+re
+unittest

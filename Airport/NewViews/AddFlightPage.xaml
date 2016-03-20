@@ -19,25 +19,33 @@
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" Grid.ColumnSpan="2" Text="{Binding WelcomeText}"/>
-        <Image  Source="../Assets/airplane62 — копия (2).png" Height="100" Grid.ColumnSpan="2" />
+        <Image Source="../Assets/AllScreensBackground.png" Stretch="Fill" Grid.RowSpan="8" Grid.ColumnSpan="3" />
 
-        <TextBlock Grid.Row="2" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Сhoose route:</TextBlock>
-        <ComboBox Grid.Row="2" Grid.Column="1" MinWidth="200" MaxWidth="300" Margin="5 10 10 10" VerticalAlignment="Center" 
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" Grid.ColumnSpan="3" Text="{Binding WelcomeText}"/>
+        
+        <TextBlock Grid.Row="2" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#041b35">
+        	<Run Text="Сhoose route:"/>
+        </TextBlock>
+        <ComboBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center" 
                   ItemsSource="{Binding RouteDictionary}" DisplayMemberPath="Value"
-                  SelectedItem="{Binding Route, Mode=TwoWay}"
+                  SelectedItem="{Binding Route, Mode=TwoWay}" BorderThickness="0.5" BorderBrush="#041b35"
                   IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"/>
-        <TextBlock Grid.Row="3" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Choose aircraft:</TextBlock>
-        <ComboBox Grid.Row="3" Grid.Column="1" MinWidth="200" MaxWidth="300" Margin="5 10 10 10" VerticalAlignment="Center" 
-                  ItemsSource="{Binding AircraftDictionary}" 
+        <TextBlock Grid.Row="3" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#041b35">
+        	<Run Text="Choose aircraft:"/>
+        </TextBlock>
+        <ComboBox Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" BorderThickness="0.5" BorderBrush="#041b35"
+                  ItemsSource="{Binding AircraftDictionary}" HorizontalAlignment="Stretch"
                   SelectedItem="{Binding Aircraft, Mode=TwoWay}"
                   IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"/>
 
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center">
+        <Image Source="../Assets/logo.png" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="20" />
+
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Center">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
@@ -46,8 +54,10 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 0 5 0 " Background="White" Content="Add flight" Command="{Binding AddFlightCommand}" BorderThickness="1" BorderBrush="Black"/>
-                <Button Grid.Column="1" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 5 0" Background="DarkGray" Content="Cancel" Command="{Binding BackCommand}" BorderThickness="1" BorderBrush="Black"/>
+                <Button Grid.Column="0" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 0 5 0 " Background="White" Content="Add flight" 
+                        Command="{Binding AddFlightCommand}" BorderThickness="0.5" BorderBrush="#041b35" Foreground="#041b35"/>
+                <Button Grid.Column="1" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 5 0" Background="LightSlateGray" Content="Cancel" 
+                        Command="{Binding BackCommand}" BorderThickness="0.5" BorderBrush="#041b35" Foreground="#041b35"/>
             </Grid>
         </StackPanel>
     </Grid>

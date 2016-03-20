@@ -14,23 +14,23 @@
             <RowDefinition Height="0.8*" />
             <RowDefinition Height="0.8*" />
             <RowDefinition Height="3*" />
-            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-       
-        
-        
-        <Image  Grid.ColumnSpan="3" Grid.RowSpan="7" Source="../Assets/ManagerRegistrationPageBackground.png" Stretch="Fill"/>
-        <TextBlock FontSize="18" Margin="5 0 0 10" Foreground="White" Grid.ColumnSpan="2" VerticalAlignment="Bottom" ><Run Text="Choose passenger"/></TextBlock>
-        
-        <Image Grid.Column="2"  Grid.Row="0" Source="../Assets/airplane62 — копия.png" Height="60" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" />
-        <Button VerticalAlignment="Center" HorizontalAlignment="Right" Width="60" Height="60"  Opacity="0" Grid.ColumnSpan="3" Margin="0 0 10 0"  
+        <Image Source="../Assets/AllScreensBackground.png" Stretch="Fill" Grid.RowSpan="8" Grid.ColumnSpan="3" />
+        <Image Source="../Assets/logo.png" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="20"  />
+
+        <TextBlock FontSize="18" Margin="5 0 0 10" Foreground="#041b35" Grid.ColumnSpan="2" VerticalAlignment="Bottom" ><Run Text="Choose passenger"/></TextBlock>
+        <TextBlock FontSize="18" Margin="5 0 0 10" Foreground="#041b35" Grid.Column="1" VerticalAlignment="Bottom" ><Run Text="Choose flight"/></TextBlock>
+
+        <Button VerticalAlignment="Center" HorizontalAlignment="Right" Width="60" Height="60"  Opacity="0" Grid.ColumnSpan="3" Margin="0 0 10 0"
+                BorderThickness="0.5" BorderBrush="#041b35"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"/>
-        
+
         <ListBox  HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Margin="5"
                   IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" ItemsSource="{Binding PassengerDictionary}" DisplayMemberPath="Value"
                           SelectedValuePath="Key" SelectedValue="{Binding Passenger, Mode=TwoWay}"/>
@@ -38,7 +38,7 @@
                  IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" ItemsSource="{Binding FlightDictionary}" DisplayMemberPath="Value"
                           SelectedValuePath="Key" SelectedValue="{Binding Flight, Mode=TwoWay}"/>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Height="30"  >
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Height="40"  >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*" />
@@ -48,13 +48,13 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Column="0" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" >Search:</TextBlock>
-                <TextBox Grid.Column="1" Height="20" Margin="5 0 0 0"
+                <TextBlock Grid.Column="0" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#041b35" >Search:</TextBlock>
+                <TextBox Grid.Column="1" Height="20" Margin="5 0 0 0" BorderThickness="0.5" BorderBrush="#041b35"
                          IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
                          Text="{Binding FlightSearchValue, Mode=TwoWay}"/>
-                <Button Grid.Column="2" Height="20" Width="30" Background="White" HorizontalAlignment="Right" Margin=" 0 5 2.5 5"
+                <Button Grid.Column="2" Height="20" Width="30" Background="White" HorizontalAlignment="Left" Margin="5"
                         IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
-                        Command="{Binding SearchCommand}">
+                        Command="{Binding SearchCommand}" BorderThickness="0.5" BorderBrush="#041b35">
                     <Image Source="../Assets/magnifying-glass16.png" Height="12"/>
                 </Button>
             </Grid>
@@ -63,42 +63,42 @@
         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" >
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.4*" />
-                    <ColumnDefinition  Width="1*"/>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="0.5*"/>
-                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Column="0" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" >Luggage:</TextBlock>
+                <TextBlock Grid.Column="0" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#041b35" >Luggage:</TextBlock>
 
                 <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" >
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
-                            <CheckBox Content="Y" FontSize="14" Foreground="White" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        <CheckBox Content="Y" FontSize="14" Foreground="#041b35" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"
                                       IsChecked="{Binding HasLuggage, Mode=TwoWay}"
                                       IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"/>
-                            <CheckBox Content="N" FontSize="14" Foreground="White" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        <CheckBox Content="N" FontSize="14" Foreground="#041b35" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                                       IsChecked="{Binding HasLuggage, Mode=TwoWay, Converter={StaticResource BooleanToNegationConverter}}"
                                       IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"/>
-                     </Grid>
+                    </Grid>
                 </StackPanel>
 
-                <TextBlock Grid.Column="2" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" >Weight:</TextBlock>
+                <TextBlock Grid.Column="2" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#041b35" >Weight:</TextBlock>
 
-                <TextBox Grid.Column="3" Height="20" Margin="2.5" Text="{Binding Weight, Mode=TwoWay}"
+                <TextBox Grid.Column="3" Height="20" Margin="2.5" Text="{Binding Weight, Mode=TwoWay}" BorderThickness="0.5" BorderBrush="#041b35"
                          IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"/>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Height="30" >
+        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Height="40" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1.6*" />
@@ -108,31 +108,32 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Column="0" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" >Choose destination:</TextBlock>
-                <ComboBox Grid.Column="1" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Width="155" Margin="0 5 5 0"
-                          IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" ItemsSource="{Binding CityDictionary}" DisplayMemberPath="Value"
-                          SelectedValuePath="Key" SelectedValue="{Binding City, Mode=TwoWay}" />
+                <TextBlock Grid.Column="0" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Foreground="#041b35">Choose destination:</TextBlock>
+                <ComboBox Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Width="155" Margin="5"
+                          IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}" ItemsSource="{Binding CityDictionary}" DisplayMemberPath="Value" 
+                          SelectedValuePath="Key" SelectedValue="{Binding City, Mode=TwoWay}" BorderThickness="0.5" BorderBrush="#041b35" />
 
             </Grid>
         </StackPanel>
 
-        <Button Grid.Row="4" Grid.Column="0" Width="150" Height="30" FontSize="14" HorizontalAlignment="Center" Foreground="Black" Background="White" Margin="5 0 5 0" 
-                Content="Create boarding pass" BorderThickness="1" BorderBrush="Black" Command="{Binding AddBoardingPassCommand}"
+        <Button Grid.Row="4" Grid.Column="0" Width="150" Height="30" FontSize="14" HorizontalAlignment="Center" Foreground="Black" Background="White" Margin="5" 
+                Content="Create boarding pass" BorderThickness="0.5" BorderBrush="#041b35" Command="{Binding AddBoardingPassCommand}"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"/>
-        <Button Grid.Row="4" Grid.Column="1" Width="100" Height="30" FontSize="14" HorizontalAlignment="Center" Foreground="Black" Background="DarkGray" Margin="5 0 10 0" 
-                Content="Cancel" BorderThickness="1" BorderBrush="Black" Command ="{Binding BackCommand}"
+        <Button Grid.Row="4" Grid.Column="1" Width="150" Height="30" FontSize="14" HorizontalAlignment="Center" Foreground="Black" Background="LightSlateGray" Margin="5" 
+                Content="Cancel" BorderThickness="0.5" BorderBrush="#041b35" Command ="{Binding BackCommand}"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"/>
 
-        <Grid Grid.Column="1" Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <DatePicker Grid.Column="0" HorizontalAlignment="Right" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DatePicker Grid.Column="0" HorizontalAlignment="Right" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
                      Date="{Binding FlightDateTime, Mode=TwoWay }"/>
-            <TimePicker Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
+                <TimePicker Grid.Column="1" HorizontalAlignment="Left" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
                      Time="{Binding FlightTime, Mode=TwoWay }"/>
-        </Grid>
-
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>
