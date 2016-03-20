@@ -1,6 +1,6 @@
-base
-spatialite
-utils
-postgis
 oracle
+spatialite
+base
+postgis
 mysql
+utils

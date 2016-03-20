@@ -14,7 +14,7 @@ mercurial
 status_codes
 autocomplete
 get_installed_distributions
-_vendor
+backwardcompat
 CommandError
 __version__
 git
@@ -38,7 +38,7 @@ os
 ConfigOptionParser
 get_similar_commands
 get_prog
-backwardcompat
+_vendor
 create_main_parser
 bazaar
 util

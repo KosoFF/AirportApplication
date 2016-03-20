@@ -19,27 +19,30 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" Grid.ColumnSpan="2" Text="{Binding WelcomeText}"/>
-        <Image x:Name="airplane62___копия__2__png" Source="../Assets/airplane62 — копия (2).png" Height="100" Grid.ColumnSpan="2" />
+        <Image Source="../Assets/AllScreensBackground.png" Stretch="Fill" Grid.RowSpan="8" Grid.ColumnSpan="3" />
+        <Image Source="../Assets/logo.png" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="20" />
+        
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" Grid.ColumnSpan="3" Text="{Binding WelcomeText}"/>
         <Button VerticalAlignment="Center" Width="100" Height="100" Opacity="0" Grid.ColumnSpan="2" />
 
-        <TextBlock Grid.Row="2" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Add city:</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" Height="20" Width="200" HorizontalAlignment="Left" Margin="5 10 100 10" Text="{Binding CityName, Mode=TwoWay}"></TextBox>
-        <Button Grid.Row="2" Grid.Column="1"  Width="50" Margin="215 0 10 0" Background="White" Content="Add" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="Black"
-                Command="{Binding AddCityCommand}"/>
-       
-        <TextBlock Grid.Row="3" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Departure point:</TextBlock>
-        <ComboBox Grid.Row="3" Grid.Column="1"  Margin="5 10 10 10" VerticalAlignment="Center" Width="200" ItemsSource="{Binding CitiesDictionary}" DisplayMemberPath="Value" 
-                  SelectedItem="{Binding DeparturePoint, Mode=TwoWay}"/>
-        <TextBlock Grid.Row="4" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center">Arrival point:</TextBlock>
-        <ComboBox Grid.Row="4" Grid.Column="1"  Margin="5 10 10 10" VerticalAlignment="Center" Width="200" ItemsSource="{Binding CitiesDictionary}" DisplayMemberPath="Value" 
-                  SelectedItem="{Binding ArrivalPoint, Mode=TwoWay}"/>
+        <TextBlock Grid.Row="2" FontSize="14" Foreground="#041b35" HorizontalAlignment="Right" VerticalAlignment="Center">Add city:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" BorderThickness="0.5" BorderBrush="#041b35" Height="20" HorizontalAlignment="Stretch" Margin="5" Text="{Binding CityName, Mode=TwoWay}"></TextBox>
+        <Button Grid.Row="2" Grid.Column="2"  Width="50" Margin="5" Background="White" Content="Add" HorizontalAlignment="Left" BorderThickness="0.5" BorderBrush="#041b35"
+                Foreground="#041b35" Command="{Binding AddCityCommand}"/>
 
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center">
+        <TextBlock Grid.Row="3" FontSize="14" Foreground="#041b35" HorizontalAlignment="Right" VerticalAlignment="Center">Departure point:</TextBlock>
+        <ComboBox Grid.Row="3" Grid.Column="1" BorderThickness="0.5" BorderBrush="#041b35" Foreground="#041b35" Margin="5" VerticalAlignment="Center" ItemsSource="{Binding CitiesDictionary}" 
+                  DisplayMemberPath="Value" HorizontalAlignment="Stretch" SelectedItem="{Binding DeparturePoint, Mode=TwoWay}"/>
+        <TextBlock Grid.Row="4" FontSize="14" Foreground="#041b35" HorizontalAlignment="Right" VerticalAlignment="Center">Arrival point:</TextBlock>
+        <ComboBox Grid.Row="4" Grid.Column="1" BorderThickness="0.5" BorderBrush="#041b35" Foreground="#041b35" Margin="5" VerticalAlignment="Center" ItemsSource="{Binding CitiesDictionary}"
+                  DisplayMemberPath="Value" HorizontalAlignment="Stretch" SelectedItem="{Binding ArrivalPoint, Mode=TwoWay}"/>
+
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Center">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
@@ -49,9 +52,9 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 0 5 0 " 
-                        Background="White" Content="Add route" Command="{Binding AddRouteCommand}" BorderThickness="1" BorderBrush="Black"/>
+                        Foreground="#041b35" Background="White" Content="Add route" Command="{Binding AddRouteCommand}" BorderThickness="0.5" BorderBrush="#041b35"/>
                 <Button Grid.Column="1" Width="130" Height="30" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 5 0" 
-                        Background="DarkGray" Content="Cancel" Command ="{Binding BackCommand}" BorderThickness="1" BorderBrush="Black"/>
+                        Foreground="#041b35" Background="LightSlateGray" Content="Cancel" Command ="{Binding BackCommand}" BorderThickness="0.5" BorderBrush="#041b35"/>
             </Grid>
         </StackPanel>
     </Grid>

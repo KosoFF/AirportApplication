@@ -1,6 +1,6 @@
 staticfiles
 sites
-humanize
+gis
 contenttypes
 postgres
 admindocs
@@ -8,7 +8,7 @@ admin
 sitemaps
 sessions
 auth
-gis
+humanize
 flatpages
 redirects
 webdesign

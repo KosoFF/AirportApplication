@@ -10,41 +10,45 @@
     DataContext="{Binding ControlViewModel, Source={StaticResource ViewModelLocator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="16" Grid.ColumnSpan="2" Text="{Binding Username}"/>
-            <Button BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="../Assets/AllScreensBackground.png" Stretch="Fill" Grid.RowSpan="8" Grid.ColumnSpan="3" />
+        <Image Source="../Assets/logo.png" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="20"  />
+
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" Foreground="#041b35" VerticalAlignment="Center" Margin="5" FontSize="16" Grid.ColumnSpan="2" Text="{Binding Username}"/>
+        <Button BorderThickness="0.5" BorderBrush="#041b35" Grid.Row="2" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" 
                     Content="Register passenger"  IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
-                    Command="{Binding RegisterPassengerCommand}"/>
-            <Button BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" 
+                    Command="{Binding RegisterPassengerCommand}" Foreground="#041b35"/>
+        <Button BorderThickness="0.5" BorderBrush="#041b35" Grid.Row="3" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" 
                     Content="Check in"  IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
-                    Command="{Binding CheckInCommand}"/>
-            <Button BorderThickness="1" BorderBrush="Black" Grid.Row="4" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" 
+                    Command="{Binding CheckInCommand}" Foreground="#041b35"/>
+        <Button BorderThickness="0.5" BorderBrush="#041b35" Grid.Row="4" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" 
                     Content="Add aircraft"  IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
-                    Command="{Binding AddAircraftCommand}"/>
-            <Button BorderThickness="1" BorderBrush="Black" Grid.Row="5" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" 
+                    Command="{Binding AddAircraftCommand}" Foreground="#041b35"/>
+        <Button BorderThickness="0.5" BorderBrush="#041b35" Grid.Row="5" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" 
                     Content="Add route"  IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
-                    Command="{Binding AddRouteCommand}"/>
-            <Button BorderThickness="1" BorderBrush="Black" Grid.Row="6" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" 
+                    Command="{Binding AddRouteCommand}" Foreground="#041b35"/>
+        <Button BorderThickness="0.5" BorderBrush="#041b35" Grid.Row="6" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="White" 
                     Content="Add flight"  IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
-                    Command="{Binding AddFlightCommand}"/>
-            <Button BorderThickness="1" BorderBrush="Black" Grid.Row="7" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="DarkGray" 
+                    Command="{Binding AddFlightCommand}" Foreground="#041b35"/>
+        <Button BorderThickness="0.5" BorderBrush="#041b35" Grid.Row="7" Grid.ColumnSpan="2" Width="270" Height="30" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Background="LightSlateGray" 
                     Content="Log out" IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
-                    Command="{Binding LogoutCommand}"/>
-            
-            <Image Source="../Assets/airplane62 — копия (2).png" Height="100" Grid.ColumnSpan="2" />
-        </Grid>
-    
+                    Command="{Binding LogoutCommand}" Foreground="#041b35"/>
+
+        <Image Source="../Assets/airplane62 — копия (2).png" Height="100" Grid.ColumnSpan="2" />
+    </Grid>
+
 </Page>

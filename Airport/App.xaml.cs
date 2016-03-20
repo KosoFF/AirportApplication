@@ -94,11 +94,11 @@ namespace Airport
             var dictionary = new Dictionary<string, Type>();
             dictionary.Add(ViewLocator.Control, typeof (ControlPage));
             dictionary.Add(ViewLocator.Login, typeof (LoginPage));
-            dictionary.Add(ViewLocator.About, typeof(AboutPage));
+            //dictionary.Add(ViewLocator.About, typeof(AboutPage));
             dictionary.Add(ViewLocator.AddAircraft, typeof(AddAircraftPage));
             dictionary.Add(ViewLocator.AddFlight, typeof(AddFlightPage));
             dictionary.Add(ViewLocator.AddRoute, typeof(AddRoutePage));
-            dictionary.Add(ViewLocator.BoardingPass, typeof(BoardingPassPage));
+            //dictionary.Add(ViewLocator.BoardingPass, typeof(BoardingPassPage));
             dictionary.Add(ViewLocator.CheckIn, typeof(CheckInPage));
             dictionary.Add(ViewLocator.PassengerRegister, typeof(PassengerRegisterPage));
             dictionary.Add(ViewLocator.SignUp, typeof(SignupPage));

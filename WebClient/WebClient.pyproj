@@ -4,8 +4,10 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>WebClient</Name>
     <RootNamespace>WebClient</RootNamespace>
-    <InterpreterId>{004e9220-2ed9-4401-aa4a-9852a4f6399c}</InterpreterId>
-    <InterpreterVersion>3.4</InterpreterVersion>
+    <InterpreterId>
+    </InterpreterId>
+    <InterpreterVersion>
+    </InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -59,19 +61,6 @@
     <Folder Include="WebClient\boardingpass\" />
     <Folder Include="WebClient\boardingpass\api\" />
     <Folder Include="WebClient\boardingpass\templates\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Interpreter Include="env\">
-      <Id>{004e9220-2ed9-4401-aa4a-9852a4f6399c}</Id>
-      <BaseInterpreter>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</BaseInterpreter>
-      <Version>3.4</Version>
-      <Description>env (Python 64-bit 3.4)</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <LibraryPath>Lib\</LibraryPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>Amd64</Architecture>
-    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

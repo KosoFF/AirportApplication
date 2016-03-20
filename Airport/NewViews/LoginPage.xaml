@@ -15,38 +15,38 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="2.5*" />
-            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <Image Grid.ColumnSpan="3" Grid.RowSpan="3" Source="../Assets/LoginPageBackground.png" Stretch="Fill"  />
 
+        <Image Source="../Assets/AllScreensBackground.png" Stretch="Fill" Grid.RowSpan="2"></Image>
+        <Image Source="../Assets/logo.png" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="150"/>
+        
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-        <Image Grid.Row="0" Grid.Column="1"  Source="../Assets/airplane62.png" VerticalAlignment="Bottom" Height="100" />
+            <TextBlock Text="Login:" Margin="5 2 5 2" FontSize="14" Foreground="#041b35"></TextBlock>
 
-        <Rectangle Fill="White" Grid.Column="1" Grid.Row="1" RadiusX="5" RadiusY="5" VerticalAlignment="Center" HorizontalAlignment="Center" Width="230" Height="320" />
-        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Name="Login" FontSize="14" Margin="0 0 0 5" Text="Login" />
-            <TextBox Name="ManagerUsername"  Width="200" Height="25" 
+            <TextBox Width="200" Height="30" Margin="5" BorderBrush="#093952" BorderThickness="0.5"
                      IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
-                     Text="{Binding Username, Mode=TwoWay}"/>
-            <TextBlock Name="ManagerPassword" FontSize="14" Margin="0 5 0 5" Text ="Password" />
-            <PasswordBox Width="200" Height="25" PasswordChar="*" Margin="0 5 0 5"
+                     Text="{Binding Username, Mode=TwoWay}" TextChanged="TextBox_TextChanged" />
+
+            <TextBlock Text="Password:" Margin="5 2 5 2" FontSize="14" Foreground="#041b35"></TextBlock>
+
+            <PasswordBox Width="200" Height="30" PasswordChar="*" Margin="5" BorderBrush="#041b35" BorderThickness="0.5"
                          IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
                          Password="{Binding Password, Mode=TwoWay}"/>
-            <CheckBox Content="Remember me" FontSize="14" HorizontalAlignment="Center" Margin="5"
-                      IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"/>
-            <Button Width="200" Height="30" FontSize="14" Margin="0 5 0 5" Background="White" Content="Log In" BorderThickness="1" BorderBrush="Black"
-                     IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
+
+            <Button Width="200" Height="30" FontSize="14" Margin="5" Background="White" Foreground="#041b35" Content="Log In" BorderBrush="#041b35" BorderThickness="0.5"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
                     Command="{Binding LoginCommand}"/>
-            <Button Width="200" Height="30" FontSize="14" Margin="0 5 0 5" Background="White" Content="Sign In" BorderThickness="1" BorderBrush="Black"
+
+            <Button Width="200" Height="30" FontSize="14" Margin="5" Background="White" Foreground="#041b35" Content="Sign In" BorderBrush="#041b35" BorderThickness="0.5"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
                     Command="{Binding SignInCommand}"/>
-            <Button Width="200" Height="30" FontSize="14" Background="#54769A" Foreground="White" Margin="0 5 0 0" Content="Sign In with VK"
+
+            <Button Width="200" Height="30" FontSize="14" Background="#54769A" Foreground="White" Margin="5" BorderBrush="#041b35" BorderThickness="0.5"
+                    Content="Sign In with VK"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource BooleanToNegationConverter}}"
                     Command="{Binding SignInWithVkCommand}"/>
         </StackPanel>
-        
-        
     </Grid>
 </Page>
